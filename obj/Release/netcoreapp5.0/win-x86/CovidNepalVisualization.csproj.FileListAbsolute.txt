@@ -712,3 +712,5 @@ D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\bin\Release\netcorea
 D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\bin\Release\netcoreapp5.0\win-x86\refs\System.Xml.XPath.dll
 D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\bin\Release\netcoreapp5.0\win-x86\refs\System.Xml.XPath.XDocument.dll
 D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\bin\Release\netcoreapp5.0\win-x86\refs\WindowsBase.dll
+D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\bin\Release\netcoreapp5.0\win-x86\Covid19Tracker.NET.dll
+D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\bin\Release\netcoreapp5.0\win-x86\RestSharp.dll

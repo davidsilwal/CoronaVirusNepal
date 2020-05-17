@@ -41,6 +41,10 @@
       "frameworks": {
         "netcoreapp5.0": {
           "dependencies": {
+            "Covid19Tracker.NET": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
             "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
               "target": "Package",
               "version": "[5.0.0-preview.3.20215.14, )"

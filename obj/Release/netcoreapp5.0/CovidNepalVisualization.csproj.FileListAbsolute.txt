@@ -360,3 +360,5 @@ D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\bin\Release\netcorea
 D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\bin\Release\netcoreapp5.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
 D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\bin\Release\netcoreapp5.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
 D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\obj\Release\netcoreapp5.0\CovidNepalVisualization.MvcApplicationPartsAssemblyInfo.cs
+D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\bin\Release\netcoreapp5.0\Covid19Tracker.NET.dll
+D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\bin\Release\netcoreapp5.0\RestSharp.dll

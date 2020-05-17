@@ -24,6 +24,7 @@
     ".NETCoreApp,Version=v5.0": {
       "CovidNepalVisualization/1.0.0": {
         "dependencies": {
+          "Covid19Tracker.NET": "1.0.0",
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "5.0.0-preview.3.20215.14",
           "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": "5.0.0-preview.3.20215.14",
           "Microsoft.Extensions.Http.Polly": "5.0.0-preview.3.20215.2",
@@ -1731,10 +1732,19 @@
           "WindowsBase.dll": {}
         }
       },
+      "Covid19Tracker.NET/1.0.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.3",
+          "RestSharp": "106.10.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/Covid19Tracker.NET.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.JsonPatch/5.0.0-preview.3.20215.14": {
         "dependencies": {
           "Microsoft.CSharp": "4.7.0",
-          "Newtonsoft.Json": "12.0.2"
+          "Newtonsoft.Json": "12.0.3"
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.AspNetCore.JsonPatch.dll": {}
@@ -1743,7 +1753,7 @@
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson/5.0.0-preview.3.20215.14": {
         "dependencies": {
           "Microsoft.AspNetCore.JsonPatch": "5.0.0-preview.3.20215.14",
-          "Newtonsoft.Json": "12.0.2",
+          "Newtonsoft.Json": "12.0.3",
           "Newtonsoft.Json.Bson": "1.0.2"
         },
         "compile": {
@@ -1904,14 +1914,14 @@
         }
       },
       "Microsoft.NETCore.Platforms/2.1.2": {},
-      "Newtonsoft.Json/12.0.2": {
+      "Newtonsoft.Json/12.0.3": {
         "compile": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
       },
       "Newtonsoft.Json.Bson/1.0.2": {
         "dependencies": {
-          "Newtonsoft.Json": "12.0.2"
+          "Newtonsoft.Json": "12.0.3"
         },
         "compile": {
           "lib/netstandard2.0/Newtonsoft.Json.Bson.dll": {}
@@ -1930,6 +1940,11 @@
           "lib/netstandard2.0/Polly.Extensions.Http.dll": {}
         }
       },
+      "RestSharp/106.10.1": {
+        "compile": {
+          "lib/netstandard2.0/RestSharp.dll": {}
+        }
+      },
       "System.Collections.Immutable/1.5.0": {},
       "System.Memory/4.5.3": {},
       "System.Reflection.Metadata/1.6.0": {},
@@ -1946,6 +1961,7 @@
     ".NETCoreApp,Version=v5.0/win-x86": {
       "CovidNepalVisualization/1.0.0": {
         "dependencies": {
+          "Covid19Tracker.NET": "1.0.0",
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "5.0.0-preview.3.20215.14",
           "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": "5.0.0-preview.3.20215.14",
           "Microsoft.Extensions.Http.Polly": "5.0.0-preview.3.20215.2",
@@ -3604,10 +3620,22 @@
           }
         }
       },
+      "Covid19Tracker.NET/1.0.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.3",
+          "RestSharp": "106.10.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Covid19Tracker.NET.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "Microsoft.AspNetCore.JsonPatch/5.0.0-preview.3.20215.14": {
         "dependencies": {
           "Microsoft.CSharp": "4.7.0",
-          "Newtonsoft.Json": "12.0.2"
+          "Newtonsoft.Json": "12.0.3"
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.AspNetCore.JsonPatch.dll": {
@@ -3619,7 +3647,7 @@
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson/5.0.0-preview.3.20215.14": {
         "dependencies": {
           "Microsoft.AspNetCore.JsonPatch": "5.0.0-preview.3.20215.14",
-          "Newtonsoft.Json": "12.0.2",
+          "Newtonsoft.Json": "12.0.3",
           "Newtonsoft.Json.Bson": "1.0.2"
         },
         "runtime": {
@@ -3856,17 +3884,17 @@
       },
       "Microsoft.Extensions.Primitives/5.0.0-preview.3.20215.2": {},
       "Microsoft.NETCore.Platforms/2.1.2": {},
-      "Newtonsoft.Json/12.0.2": {
+      "Newtonsoft.Json/12.0.3": {
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {
             "assemblyVersion": "12.0.0.0",
-            "fileVersion": "12.0.2.23222"
+            "fileVersion": "12.0.3.23909"
           }
         }
       },
       "Newtonsoft.Json.Bson/1.0.2": {
         "dependencies": {
-          "Newtonsoft.Json": "12.0.2"
+          "Newtonsoft.Json": "12.0.3"
         },
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.Bson.dll": {
@@ -3891,6 +3919,14 @@
           "lib/netstandard2.0/Polly.Extensions.Http.dll": {
             "assemblyVersion": "3.0.0.0",
             "fileVersion": "3.0.0.0"
+          }
+        }
+      },
+      "RestSharp/106.10.1": {
+        "runtime": {
+          "lib/netstandard2.0/RestSharp.dll": {
+            "assemblyVersion": "106.0.0.0",
+            "fileVersion": "106.10.1.0"
           }
         }
       },
@@ -3923,6 +3959,13 @@
       "type": "runtimepack",
       "serviceable": false,
       "sha512": ""
+    },
+    "Covid19Tracker.NET/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-D5YLTCGrHibUdCprMXkSbcCor+pX0Zg6J/BCPgwKTqdI6gnRH0ChB3iSyYuxbLuISgdUpK2aUV8zwgQZiD3yOg==",
+      "path": "covid19tracker.net/1.0.0",
+      "hashPath": "covid19tracker.net.1.0.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.JsonPatch/5.0.0-preview.3.20215.14": {
       "type": "package",
@@ -4085,12 +4128,12 @@
       "path": "microsoft.netcore.platforms/2.1.2",
       "hashPath": "microsoft.netcore.platforms.2.1.2.nupkg.sha512"
     },
-    "Newtonsoft.Json/12.0.2": {
+    "Newtonsoft.Json/12.0.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-rTK0s2EKlfHsQsH6Yx2smvcTCeyoDNgCW7FEYyV01drPlh2T243PR2DiDXqtC5N4GDm4Ma/lkxfW5a/4793vbA==",
-      "path": "newtonsoft.json/12.0.2",
-      "hashPath": "newtonsoft.json.12.0.2.nupkg.sha512"
+      "sha512": "sha512-6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg==",
+      "path": "newtonsoft.json/12.0.3",
+      "hashPath": "newtonsoft.json.12.0.3.nupkg.sha512"
     },
     "Newtonsoft.Json.Bson/1.0.2": {
       "type": "package",
@@ -4112,6 +4155,13 @@
       "sha512": "sha512-drrG+hB3pYFY7w1c3BD+lSGYvH2oIclH8GRSehgfyP5kjnFnHKQuuBhuHLv+PWyFuaTDyk/vfRpnxOzd11+J8g==",
       "path": "polly.extensions.http/3.0.0",
       "hashPath": "polly.extensions.http.3.0.0.nupkg.sha512"
+    },
+    "RestSharp/106.10.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-MhR4w8LbArVaRA5T/oAR3ZnF852QXtDXRBO84GsvyYzsm7FsjXHJ+JaM8x/nR/B/OCB1WbolGH7hqMT1GZpNJw==",
+      "path": "restsharp/106.10.1",
+      "hashPath": "restsharp.106.10.1.nupkg.sha512"
     },
     "System.Collections.Immutable/1.5.0": {
       "type": "package",

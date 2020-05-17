@@ -1,82 +1,299 @@
 @page
 @model IndexModel
-@inject CovidDataService dataService
+@inject WorldMeterDataService worldDataService
+@inject JHUDataservice jhuDataService
+@using static System.DateTime
+
 @using Newtonsoft.Json
 
 @{
     ViewData["Title"] = "Coronavirus metric for nepal";
 
-    var result = await dataService.GetConfirmedTimeSeries();
-    var summary = await dataService.GetSummaryAsync();
+
+    var result = await jhuDataService.GetConfirmedTimeSeries();
+
+    var nepal = await worldDataService.GetSummaryByCountryAsync("nepal");
+    var india = await worldDataService.GetSummaryByCountryAsync("india");
+    var usa = await worldDataService.GetSummaryByCountryAsync("usa");
+    var asia = await worldDataService.GetSummaryByContientAsync("asia");
+    var aus = await worldDataService.GetSummaryByContientAsync("australia");
+    var global = await worldDataService.GetGlobalByContientAsync();
 
 }
+<p style="float:right">Data is updated every 10 minutes</p>
+<div style="margin:5px;">
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th scope="col">Territory</th>
+                <th scope="col">Cases</th>
+                <th scope="col">Deaths</th>
+                <th scope="col">Recovered</th>
+                <th scope="col">Today Cases</th>
+                <th scope="col">Today Deaths</th>
+                <th scope="col">Tests</th>
+                <th scope="col">Cases/1M</th>
+                <th scope="col">Deaths/1M</th>
+                <th scope="col">Recovered/1M</th>
+                <th scope="col">Test/1M</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Nepal</td>
+                <td>@nepal.Cases</td>
+                <td>@nepal.Deaths</td>
+                <td>@nepal.Recovered</td>
+                <td>@nepal.TodayCases</td>
+                <td>@nepal.TodayDeaths</td>
+                <td>@nepal.Tests</td>
+                <td>@nepal.CasesPerOneMillion</td>
+                <td>@nepal.DeathsPerOneMillion</td>
+                <td>@nepal.RecoveredPerOneMillion</td>
+                <td>@nepal.TestsPerOneMillion</td>
+            </tr>
+            <tr>
+                <td>India</td>
+                <td>@india.Cases</td>
+                <td>@india.Deaths</td>
+                <td>@india.Recovered</td>
+                <td>@india.TodayCases</td>
+                <td>@india.TodayDeaths</td>
+                <td>@india.Tests</td>
+                <td>@india.CasesPerOneMillion</td>
+                <td>@india.DeathsPerOneMillion</td>
+                <td>@india.RecoveredPerOneMillion</td>
+                <td>@india.TestsPerOneMillion</td>
+            </tr>
+            <tr>
+                <td>USA</td>
+                <td>@usa.Cases</td>
+                <td>@usa.Deaths</td>
+                <td>@usa.Recovered</td>
+                <td>@usa.TodayCases</td>
+                <td>@usa.TodayDeaths</td>
+                <td>@usa.Tests</td>
+                <td>@usa.CasesPerOneMillion</td>
+                <td>@usa.DeathsPerOneMillion</td>
+                <td>@usa.RecoveredPerOneMillion</td>
+                <td>@usa.TestsPerOneMillion</td>
+            </tr>
+            <tr>
+                <td>Australia</td>
+                <td>@aus.Cases</td>
+                <td>@aus.Deaths</td>
+                <td>@aus.Recovered</td>
+                <td>@aus.TodayCases</td>
+                <td>@aus.TodayDeaths</td>
+                <td>@aus.CasesPerOneMillion</td>
+                <td>@aus.DeathsPerOneMillion</td>
+                <td>@aus.RecoveredPerOneMillion</td>
+                <td>@aus.TestsPerOneMillion</td>
+                <td>@aus.Population</td>
+            </tr>
+            <tr>
+                <td>Asia</td>
+                <td>@asia.Cases</td>
+                <td>@asia.Deaths</td>
+                <td>@asia.Recovered</td>
+                <td>@asia.TodayCases</td>
+                <td>@asia.TodayDeaths</td>
+                <td>@asia.Tests</td>
+                <td>@asia.CasesPerOneMillion</td>
+                <td>@asia.DeathsPerOneMillion</td>
+                <td>@asia.RecoveredPerOneMillion</td>
+                <td>@asia.TestsPerOneMillion</td>
+            </tr>
+            <tr>
+                <td>Global</td>
+                <td>@global.Cases</td>
+                <td>@global.Deaths</td>
+                <td>@global.Recovered</td>
+                <td>@global.TodayCases</td>
+                <td>@global.TodayDeaths</td>
+                <td>@global.CasesPerOneMillion</td>
+                <td>@global.DeathsPerOneMillion</td>
+                <td>@global.RecoveredPerOneMillion</td>
+                <td>@global.TestsPerOneMillion</td>
+                <td>@global.Population</td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+
+@*<select id="linechartSelect" class="custom-select custom-select-lg mb-3" onchange="OnLineChartChange()">
+    <option selected value="nepal">Nepal</option>
+    <option value="india">India</option>
+    <option value="usa">USA</option>
+    <option value="asia">Asia</option>
+    <option value="aus">Australia</option>
+    <option value="global">Global</option>
+</select>*@
+
+<figure class="highcharts-figure">
+    <div id="container"></div>
+</figure>
+
+
+<select id="piecharSelect" class="custom-select custom-select-lg mb-3" onchange="OnPiecharChange()">
+    <option selected value="nepal">Nepal</option>
+    <option value="india">India</option>
+    <option value="usa">USA</option>
+    <option value="asia">Asia</option>
+    <option value="aus">Australia</option>
+    <option value="global">Global</option>
+</select>
+
+<figure class="highcharts-figure">
+
+    <div id="piechartcontainer"></div>
+</figure>
+
+
+<figure class="highcharts-figure">
+    <div id="columncontainer"></div>
+</figure>
+
+
+@section Scripts{
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script type="text/javascript">
+
+        function OnPiecharChange() {
+            var territory = document.getElementById("piecharSelect").value;
+
+            switch (territory) {
+                case 'nepal':
+                    RenderPiechart(@nepal.Active,@nepal.Deaths,@nepal.Recovered,'nepal');
+                    break;
+
+                case 'india':
+                    RenderPiechart(@india.Active,@india.Deaths,@india.Recovered, 'india');
+                    break;
+
+                case 'usa':
+                    RenderPiechart(@usa.Active,@usa.Deaths,@usa.Recovered, 'usa');
+                    break;
+
+
+                case 'asia':
+                    RenderPiechart(@asia.Active,@asia.Deaths,@asia.Recovered, 'asia');
+                    break;
+
+                case 'aus':
+                    RenderPiechart(@aus.Active,@aus.Deaths,@aus.Recovered, 'Australia');
+                    break;
+
+                case 'global':
+                    RenderPiechart(@global.Active,@global.Deaths,@global.Recovered, 'global');
+                    break;
+
+                default:
+                     RenderPiechart(@nepal.Active,@nepal.Deaths,@nepal.Recovered,'');
+                    break;
+            }
+
+        }
+
+
+        //function OnLineChartChange() {
+        //    var territory = document.getElementById("linechartSelect").value;
+
+        //    $.ajax({
+        //        url: "/Index?handler=TimeSeriesByCountryName",
+        //        type: 'POST',
+        //        data:
+        //        {
+        //            "country": territory
+        //        },
+        //        success: function (res) {
+
+        //            result = res;
+        //            debugger;
+        //            console.log(res.Active);
+        //            alert(res);
+        //        }
+        //    });
+
+
+        //}
 
 
 
-    <div class="row" style="margin-top:10px">
-        <div class="card bg-light mb-3" style="margin-left:10px; max-width: 25rem;">
-            <div class="card-header">Nepal</div>
-            <div class="card-body">
-                Total Confirmed : @summary.Countries.FirstOrDefault(x=>x.Country=="Nepal").TotalConfirmed
-                <br />
-                Total Deaths : @summary.Countries.FirstOrDefault(x => x.Country == "Nepal").TotalDeaths
-                <br />
-                Total Recovered : @summary.Countries.FirstOrDefault(x => x.Country == "Nepal").TotalRecovered
-                <br />
-                New Recovered  : @summary.Countries.FirstOrDefault(x => x.Country == "Nepal").NewRecovered
-                <br />
+        function RenderPiechart(active, deaths, recovered,country) {
 
-                New Deaths  : @summary.Countries.FirstOrDefault(x => x.Country == "Nepal").NewDeaths
-                <br />
-                New Confirmed  : @summary.Countries.FirstOrDefault(x => x.Country == "Nepal").NewConfirmed
-                <br />
-            </div>
-        </div>
+            Highcharts.chart('piechartcontainer', {
 
-        <div class="card bg-light mb-3" style="margin-left:10px; max-width: 25rem;">
-            <div class="card-header">Worldwide</div>
-            <div class="card-body">
-                Total Confirmed : @summary.Global.TotalConfirmed
-                <br />
-                Total Deaths : @summary.Global.TotalDeaths
-                <br />
-                Total Recovered : @summary.Global.TotalRecovered
-                <br />
-                New Recovered  : @summary.Global.NewRecovered
-                <br />
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'corona virus metric for'+country
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage}%</b>'
+            },
+            accessibility: {
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                    }
+                }
+            },
+            series: [{
+                name: 'Brands',
+                colorByPoint: true,
+                data: [{
+                    name: 'Active',
+                    y: active,
 
-                New Deaths  : @summary.Global.NewDeaths
-                <br />
-                New Confirmed  : @summary.Global.NewConfirmed
-                <br />
-            </div>
-        </div>
-    </div>
+                }, {
+                        name: 'Deaths',
+                    y: deaths,
+                }, {
+                        name: 'Recovered',
+                    y: recovered,
+                }]
+            }]
+        });
 
-  
-
-    <figure class="highcharts-figure">
-        <div id="container"></div>
-    </figure>
-
-
-
-    @section Scripts{
-        <script src="https://code.highcharts.com/highcharts.js"></script>
-        <script src="https://code.highcharts.com/modules/series-label.js"></script>
+        }
 
 
-        <script type="text/javascript">
+
     window.onload = function () {
-        // Create the chart
+        // Create the
 
-Highcharts.chart('container', {
+
+
+        RenderPiechart(@nepal.Active,@nepal.Deaths,@nepal.Recovered, 'nepal');
+
+        Highcharts.chart('container', {
     chart: {
         type: 'spline'
     },
     title: {
         text: 'Coronavirus metric for nepal'
-    },
+            },
+            subtitle: {
+                text: 'Source: disease.sh'
+            },
     xAxis: {
         type: 'datetime',
         dateTimeLabelFormats: { // don't display the dummy year
@@ -107,7 +324,7 @@ Highcharts.chart('container', {
         }
     },
 
-    colors: ['#00FFFF', '#FF0000', '#008000', '#007f74', '#000'],
+    colors: ['#00FFFF', '#FF0000', '#008000', '#007f74'],
 
     // Define the data points. All series have a dummy year
     // of 1970/71 in order to be compared on the same x axis. Note
@@ -122,11 +339,7 @@ Highcharts.chart('container', {
     {
         name: "Recovered",
         data: @Html.Raw(result.Recovered),
-    },
-        {
-            name: "Active",
-            data: @Html.Raw(result.Active),
-      }],
+    }],
 
     responsive: {
         rules: [{
@@ -137,7 +350,88 @@ Highcharts.chart('container', {
     }
 });
 
-    }
-        </script>
+
+        Highcharts.chart('columncontainer', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Corona Virus metric'
+            },
+            subtitle: {
+                text: 'Source: disease.sh'
+            },
+            xAxis: {
+                categories: [
+                    'Cases',
+                    'Deaths',
+                    'Recovered',
+                    'Today Cases',
+                    'Today Deaths',
+                    'Tests',
+                    'Cases Per One Million',
+                    'Deaths Per One Million',
+                    'Recovered Per One Million',
+                    'Test Per One Million',
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Numeric Value'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Nepal',
+                data: [@nepal.Cases, @nepal.Deaths, @nepal.Recovered, @nepal.TodayCases,@nepal.TodayDeaths,@nepal.Tests,@nepal.CasesPerOneMillion,@nepal.DeathsPerOneMillion,@nepal.RecoveredPerOneMillion,@nepal.TestsPerOneMillion]
+
+            },
+            {
+                name: 'India',
+                data: [@india.Cases, @india.Deaths, @india.Recovered, @india.TodayCases,@india.TodayDeaths,@india.Tests,@india.CasesPerOneMillion,@india.DeathsPerOneMillion,@india.RecoveredPerOneMillion,@india.TestsPerOneMillion]
+
+                },
+            {
+                name: 'USA',
+                data: [@usa.Cases, @usa.Deaths, @usa.Recovered, @usa.TodayCases,@usa.TodayDeaths,@usa.Tests,@usa.CasesPerOneMillion,@usa.DeathsPerOneMillion,@usa.RecoveredPerOneMillion,@usa.TestsPerOneMillion]
+
+                },
+             {
+                 name: 'Australia',
+                data: [@aus.Cases, @aus.Deaths, @aus.Recovered, @aus.TodayCases,@aus.TodayDeaths,@aus.Tests,@aus.CasesPerOneMillion,@aus.DeathsPerOneMillion,@aus.RecoveredPerOneMillion,@aus.TestsPerOneMillion]
+
+                },
+
+            {
+                name: 'Asia',
+                data: [@asia.Cases, @asia.Deaths, @asia.Recovered, @asia.TodayCases,@asia.TodayDeaths,@asia.Tests,@asia.CasesPerOneMillion,@asia.DeathsPerOneMillion,@asia.RecoveredPerOneMillion,@asia.TestsPerOneMillion]
+
+                },
+            {
+                name: 'World',
+                data: [@global.Cases, @global.Deaths, @global.Recovered, @global.TodayCases,@global.TodayDeaths,@global.Tests,@global.CasesPerOneMillion,@global.DeathsPerOneMillion,@global.RecoveredPerOneMillion,@global.TestsPerOneMillion]
+
+            }]
+        });
+
+
 
     }
+    </script>
+
+}

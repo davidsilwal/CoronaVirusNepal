@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json.Serialization;
 using Polly;
 using System;
 using System.Net.Http;
@@ -23,7 +25,10 @@ namespace CovidNepalVisualization
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var razor = services.AddRazorPages();
+            var razor = services.AddRazorPages(
+                o => o.Conventions.ConfigureFilter(new IgnoreAntiforgeryTokenAttribute())).AddNewtonsoftJson(options =>
+                    options.SerializerSettings.ContractResolver =
+                       new CamelCasePropertyNamesContractResolver());
 
             if (WebHostEnvironment.IsDevelopment())
             {
@@ -35,6 +40,19 @@ namespace CovidNepalVisualization
                 )
                 .AddPolicyHandler(Policy.TimeoutAsync<HttpResponseMessage>(TimeSpan.FromSeconds(10)))
                 .AddTransientHttpErrorPolicy(p => p.RetryAsync(3));
+
+            services.AddHttpClient<JHUDataservice>(
+                options => options.BaseAddress = new Uri("https://disease.sh/")
+                )
+                .AddPolicyHandler(Policy.TimeoutAsync<HttpResponseMessage>(TimeSpan.FromSeconds(10)))
+                .AddTransientHttpErrorPolicy(p => p.RetryAsync(3));
+
+
+            services.AddHttpClient<WorldMeterDataService>(
+                options => options.BaseAddress = new Uri("https://disease.sh/")
+                )
+    .AddPolicyHandler(Policy.TimeoutAsync<HttpResponseMessage>(TimeSpan.FromSeconds(10)))
+    .AddTransientHttpErrorPolicy(p => p.RetryAsync(3));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

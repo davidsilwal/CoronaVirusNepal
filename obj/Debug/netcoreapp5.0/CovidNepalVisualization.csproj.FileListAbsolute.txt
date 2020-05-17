@@ -357,6 +357,8 @@ D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\bin\Debug\netcoreapp
 D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\bin\Debug\netcoreapp5.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
 D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\bin\Debug\netcoreapp5.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
 D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\bin\Debug\netcoreapp5.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\bin\Debug\netcoreapp5.0\Covid19Tracker.NET.dll
+D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\bin\Debug\netcoreapp5.0\RestSharp.dll
 D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\obj\Debug\netcoreapp5.0\CovidNepalVisualization.csproj.CoreCompileInputs.cache
 D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\obj\Debug\netcoreapp5.0\CovidNepalVisualization.MvcApplicationPartsAssemblyInfo.cs
 D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\obj\Debug\netcoreapp5.0\CovidNepalVisualization.MvcApplicationPartsAssemblyInfo.cache

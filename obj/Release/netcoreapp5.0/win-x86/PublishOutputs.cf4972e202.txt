@@ -676,6 +676,7 @@ D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\obj\Release\netcorea
 D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\obj\Release\netcoreapp5.0\win-x86\PubTmp\Out\System.Security.Permissions.dll
 D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\obj\Release\netcoreapp5.0\win-x86\PubTmp\Out\System.Windows.Extensions.dll
 D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\obj\Release\netcoreapp5.0\win-x86\PubTmp\Out\aspnetcorev2_inprocess.dll
+D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\obj\Release\netcoreapp5.0\win-x86\PubTmp\Out\Covid19Tracker.NET.dll
 D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\obj\Release\netcoreapp5.0\win-x86\PubTmp\Out\Microsoft.AspNetCore.JsonPatch.dll
 D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\obj\Release\netcoreapp5.0\win-x86\PubTmp\Out\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\obj\Release\netcoreapp5.0\win-x86\PubTmp\Out\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
@@ -690,6 +691,7 @@ D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\obj\Release\netcorea
 D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\obj\Release\netcoreapp5.0\win-x86\PubTmp\Out\Newtonsoft.Json.Bson.dll
 D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\obj\Release\netcoreapp5.0\win-x86\PubTmp\Out\Polly.dll
 D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\obj\Release\netcoreapp5.0\win-x86\PubTmp\Out\Polly.Extensions.Http.dll
+D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\obj\Release\netcoreapp5.0\win-x86\PubTmp\Out\RestSharp.dll
 D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\obj\Release\netcoreapp5.0\win-x86\PubTmp\Out\cs\Microsoft.CodeAnalysis.resources.dll
 D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\obj\Release\netcoreapp5.0\win-x86\PubTmp\Out\de\Microsoft.CodeAnalysis.resources.dll
 D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\obj\Release\netcoreapp5.0\win-x86\PubTmp\Out\es\Microsoft.CodeAnalysis.resources.dll
