@@ -1,0 +1,116 @@
+﻿@page
+@inject CovidDataService dataService
+@using Newtonsoft.Json
+
+@{
+    ViewData["Title"] = "Covid 19 Data Visualization";
+
+    var result = await dataService.GetDataByNepalAsync();
+
+}
+
+Total Confirmed : @result.TotalConfirmed
+<br />
+Total Deaths : @result.TotalDeaths
+<br />
+Total Recovered : @result.TotalRecovered
+<br />
+Total Active : @result.TotalActive
+<br />
+
+<figure class="highcharts-figure">
+    <div id="container"></div>
+    <p class="highcharts-description">
+        Basic line chart showing trends in a dataset. This chart includes the
+        <code>series-label</code> module, which adds a label to each line for
+        enhanced readability.
+    </p>
+</figure>
+
+
+@section Scripts{
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+
+    <script type="text/javascript">
+    window.onload = function () {
+        // Create the chart
+
+        Highcharts.chart('container', {
+
+            title: {
+                text: 'Covid 19 data visualization in nepal'
+            },
+
+            subtitle: {
+                text: 'Source: covid19api.com'
+            },
+
+            yAxis: {
+                title: {
+                    text: 'Number of Employees'
+                }
+            },
+
+            xAxis: {
+                accessibility: {
+                    rangeDescription: 'Range: 2010 to 2017'
+                }
+            },
+
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle'
+            },
+
+            plotOptions: {
+                series: {
+                    label: {
+                        connectorAllowed: false
+                    },
+                    pointStart: 2010
+                }
+            },
+
+            series: [{
+                name: 'Confirmed',
+                data: @Html.Raw(result.Confirmed),
+            }
+
+                , {
+                    name: 'Deaths',
+                data: @Html.Raw(result.Deaths),
+            }, {
+                    name: 'Recovered',
+                data: @Html.Raw(result.Recovered),
+            }, {
+                    name: 'Active',
+                data:@Html.Raw(result.Active),
+                }
+
+            ],
+
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+
+        });
+
+
+
+
+    }
+    </script>
+
+}

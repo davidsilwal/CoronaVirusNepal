@@ -1,0 +1,143 @@
+@page
+@model IndexModel
+@inject CovidDataService dataService
+@using Newtonsoft.Json
+
+@{
+    ViewData["Title"] = "Coronavirus metric for nepal";
+
+    var result = await dataService.GetConfirmedTimeSeries();
+    var summary = await dataService.GetSummaryAsync();
+
+}
+
+
+
+    <div class="row" style="margin-top:10px">
+        <div class="card bg-light mb-3" style="margin-left:10px; max-width: 25rem;">
+            <div class="card-header">Nepal</div>
+            <div class="card-body">
+                Total Confirmed : @summary.Countries.FirstOrDefault(x=>x.Country=="Nepal").TotalConfirmed
+                <br />
+                Total Deaths : @summary.Countries.FirstOrDefault(x => x.Country == "Nepal").TotalDeaths
+                <br />
+                Total Recovered : @summary.Countries.FirstOrDefault(x => x.Country == "Nepal").TotalRecovered
+                <br />
+                New Recovered  : @summary.Countries.FirstOrDefault(x => x.Country == "Nepal").NewRecovered
+                <br />
+
+                New Deaths  : @summary.Countries.FirstOrDefault(x => x.Country == "Nepal").NewDeaths
+                <br />
+                New Confirmed  : @summary.Countries.FirstOrDefault(x => x.Country == "Nepal").NewConfirmed
+                <br />
+            </div>
+        </div>
+
+        <div class="card bg-light mb-3" style="margin-left:10px; max-width: 25rem;">
+            <div class="card-header">Worldwide</div>
+            <div class="card-body">
+                Total Confirmed : @summary.Global.TotalConfirmed
+                <br />
+                Total Deaths : @summary.Global.TotalDeaths
+                <br />
+                Total Recovered : @summary.Global.TotalRecovered
+                <br />
+                New Recovered  : @summary.Global.NewRecovered
+                <br />
+
+                New Deaths  : @summary.Global.NewDeaths
+                <br />
+                New Confirmed  : @summary.Global.NewConfirmed
+                <br />
+            </div>
+        </div>
+    </div>
+
+  
+
+    <figure class="highcharts-figure">
+        <div id="container"></div>
+    </figure>
+
+
+
+    @section Scripts{
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/series-label.js"></script>
+
+
+        <script type="text/javascript">
+    window.onload = function () {
+        // Create the chart
+
+Highcharts.chart('container', {
+    chart: {
+        type: 'spline'
+    },
+    title: {
+        text: 'Coronavirus metric for nepal'
+    },
+    xAxis: {
+        type: 'datetime',
+        dateTimeLabelFormats: { // don't display the dummy year
+            month: '%e. %b',
+            year: '%b'
+        },
+        title: {
+            text: 'Year'
+        }
+    },
+    yAxis: {
+        title: {
+            text: 'Value'
+        },
+        min: 1
+    },
+    tooltip: {
+        headerFormat: '<b>{series.name}</b><br>',
+        pointFormat: '{point.x:%e. %b}: {point.y}'
+    },
+
+    plotOptions: {
+        series: {
+            marker: {
+                enabled: false
+            },
+
+        }
+    },
+
+    colors: ['#00FFFF', '#FF0000', '#008000', '#007f74', '#000'],
+
+    // Define the data points. All series have a dummy year
+    // of 1970/71 in order to be compared on the same x axis. Note
+    // that in JavaScript, months start at 0 for January, 1 for February etc.
+    series: [{
+        name: "Confirmed",
+        data: @Html.Raw(result.Confirmed),
+    }, {
+        name: "Deaths",
+        data: @Html.Raw(result.Deaths),
+    },
+    {
+        name: "Recovered",
+        data: @Html.Raw(result.Recovered),
+    },
+        {
+            name: "Active",
+            data: @Html.Raw(result.Active),
+      }],
+
+    responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 500
+            }
+        }]
+    }
+});
+
+    }
+        </script>
+
+    }
