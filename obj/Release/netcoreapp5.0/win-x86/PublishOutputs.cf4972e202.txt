@@ -1,4 +1,5 @@
 D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\obj\Release\netcoreapp5.0\win-x86\PubTmp\Out\CovidNepalVisualization.exe
+D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\obj\Release\netcoreapp5.0\win-x86\PubTmp\Out\wwwroot\css\bootstrap-dark.min.css
 D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\obj\Release\netcoreapp5.0\win-x86\PubTmp\Out\wwwroot\css\site.css
 D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\obj\Release\netcoreapp5.0\win-x86\PubTmp\Out\wwwroot\favicon.ico
 D:\Code\CovidNepalDataVisualization\CovidNepalVisualization\obj\Release\netcoreapp5.0\win-x86\PubTmp\Out\wwwroot\js\site.js

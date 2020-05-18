@@ -65,6 +65,8 @@ namespace CovidNepalVisualization
 
         [JsonProperty("criticalPerOneMillion")]
         public object CriticalPerOneMillion { get; set; }
+
+        public DateTime GetUpdatedDateTime() => (new DateTime(1970, 1, 1)).AddMilliseconds(Updated);
     }
 
     public partial class WorldMeterRecord
@@ -119,6 +121,8 @@ namespace CovidNepalVisualization
 
         [JsonProperty("criticalPerOneMillion")]
         public double CriticalPerOneMillion { get; set; }
+
+        public DateTime GetDateTime() => (new DateTime(1970, 1, 1)).AddMilliseconds(Updated);
     }
 
     public class WorldMeterDataService

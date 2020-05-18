@@ -13,14 +13,22 @@
     var result = await jhuDataService.GetConfirmedTimeSeries();
 
     var nepal = await worldDataService.GetSummaryByCountryAsync("nepal");
+
+
     var india = await worldDataService.GetSummaryByCountryAsync("india");
     var usa = await worldDataService.GetSummaryByCountryAsync("usa");
     var asia = await worldDataService.GetSummaryByContientAsync("asia");
     var aus = await worldDataService.GetSummaryByContientAsync("australia");
     var global = await worldDataService.GetGlobalByContientAsync();
 
+    var tzInfo = TimeZoneInfo.FindSystemTimeZoneById("Nepal Standard Time");
+
+
+
 }
-<p style="float:right">Data is updated every 10 minutes</p>
+
+    <p style="float:right">Last updated: @TimeZoneInfo.ConvertTimeFromUtc(nepal.GetUpdatedDateTime(), tzInfo) Nepal Standard Time</p>
+
 <div style="margin:5px;">
     <table class="table table-responsive">
         <thead>
@@ -124,13 +132,13 @@
 
 
 @*<select id="linechartSelect" class="custom-select custom-select-lg mb-3" onchange="OnLineChartChange()">
-    <option selected value="nepal">Nepal</option>
-    <option value="india">India</option>
-    <option value="usa">USA</option>
-    <option value="asia">Asia</option>
-    <option value="aus">Australia</option>
-    <option value="global">Global</option>
-</select>*@
+        <option selected value="nepal">Nepal</option>
+        <option value="india">India</option>
+        <option value="usa">USA</option>
+        <option value="asia">Asia</option>
+        <option value="aus">Australia</option>
+        <option value="global">Global</option>
+    </select>*@
 
 <figure class="highcharts-figure">
     <div id="container"></div>
@@ -201,6 +209,7 @@
         }
 
 
+
         //function OnLineChartChange() {
         //    var territory = document.getElementById("linechartSelect").value;
 
@@ -236,7 +245,7 @@
                 type: 'pie'
             },
             title: {
-                text: 'corona virus metric for'+country
+                text: 'corona virus metric for '+country
             },
             tooltip: {
                 pointFormat: '{series.name}: <b>{point.percentage}%</b>'
@@ -433,5 +442,7 @@
 
     }
     </script>
+    <script src="https://code.highcharts.com/themes/dark-unica.js"></script>
+
 
 }
